@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
+              mainAxisExtent: 240,
             ),
             delegate: SliverChildListDelegate(
                 _homeContentData.newProductList.map((product) => ProductGridItem(product)).toList()
@@ -46,7 +47,8 @@ class _HomePageState extends State<HomePage> {
           SliverPersistentHeader(delegate: _HomePageProductHeaderDelegate('What\'s hot')),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2
+              crossAxisCount: 2,
+              mainAxisExtent: 240,
             ),
             delegate: SliverChildListDelegate(
                 _homeContentData.hotProductList.map((product) => ProductGridItem(product)).toList()
@@ -75,6 +77,7 @@ class _HomePageProductHeaderDelegate extends SliverPersistentHeaderDelegate{
    return Container(
      padding: const EdgeInsets.symmetric(horizontal: 16),
      child: Row(
+       crossAxisAlignment: CrossAxisAlignment.center,
        children: [
          Expanded(child: Text(
            _title,
