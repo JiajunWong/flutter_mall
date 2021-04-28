@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mall/components/advertise_component.dart';
+import 'package:flutter_mall/components/product_grid_list_component.dart';
 import 'package:flutter_mall/network/api.dart';
 import 'package:flutter_mall/network/models/home_content_response.dart';
 
@@ -19,11 +21,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(_homeContentData?.advertiseList?.length != null
-            ? _homeContentData?.advertiseList?.length.toString()
-            : "Empty"),
-      ),
+      body: _homeContentData == null? Center(child: Text('Loading'),) :
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              child: AdvertiseBanner(
+                advertises: _homeContentData.advertiseList,
+              ),
+            ),
+            ProductGridList('What\'s new', _homeContentData.newProductList)
+          ],
+        ),
+      )
     );
   }
 

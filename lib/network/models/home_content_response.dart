@@ -1,4 +1,5 @@
 
+import 'package:flutter_mall/network/models/product.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'advertise.dart';
@@ -20,8 +21,9 @@ class HomeContentResponse {
 @JsonSerializable(explicitToJson: true)
 class HomeContentData {
   List<Advertise> advertiseList;
+  List<Product> newProductList;
 
-  HomeContentData(this.advertiseList);
+  HomeContentData(this.advertiseList, this.newProductList);
 
   factory HomeContentData.fromJson(Map<String, dynamic> json) => _$HomeContentDataFromJson(json);
 
