@@ -34,6 +34,10 @@ HomeContentData _$HomeContentDataFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Product.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    (json['hotProductList'] as List)
+        ?.map((e) =>
+            e == null ? null : Product.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -43,4 +47,6 @@ Map<String, dynamic> _$HomeContentDataToJson(HomeContentData instance) =>
           instance.advertiseList?.map((e) => e?.toJson())?.toList(),
       'newProductList':
           instance.newProductList?.map((e) => e?.toJson())?.toList(),
+      'hotProductList':
+          instance.hotProductList?.map((e) => e?.toJson())?.toList(),
     };

@@ -8,7 +8,6 @@ class MallApis {
     String data = await DefaultAssetBundle.of(context).loadString("data/home_content.json");
     Map<String, dynamic> homeContentMap = jsonDecode(data);
     var homeContentResponse = HomeContentResponse.fromJson(homeContentMap);
-    print("JIAJUN: "+homeContentResponse.data.newProductList.length.toString());
     return homeContentResponse.data;
   }
 }

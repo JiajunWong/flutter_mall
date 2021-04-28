@@ -22,18 +22,37 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _homeContentData == null? Center(child: Text('Loading'),) :
-      SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              child: AdvertiseBanner(
-                advertises: _homeContentData.advertiseList,
-              ),
+      CustomScrollView(
+        slivers: [
+          SliverList(delegate: SliverChildListDelegate(
+            [
+                  Container(
+                    height: 200,
+                    child: AdvertiseBanner(
+                      advertises: _homeContentData.advertiseList,
+                    ),
+                  ),
+            ]
+          )),
+          SliverPersistentHeader(delegate: _HomePageProductHeaderDelegate('What\'s new')),
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
             ),
-            ProductGridList('What\'s new', _homeContentData.newProductList)
-          ],
-        ),
+            delegate: SliverChildListDelegate(
+                _homeContentData.newProductList.map((product) => ProductGridItem(product)).toList()
+            ),
+          ),
+          SliverPersistentHeader(delegate: _HomePageProductHeaderDelegate('What\'s hot')),
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2
+            ),
+            delegate: SliverChildListDelegate(
+                _homeContentData.hotProductList.map((product) => ProductGridItem(product)).toList()
+            ),
+          )
+        ],
       )
     );
   }
@@ -43,5 +62,32 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _homeContentData = data;
     });
+  }
+}
+
+class _HomePageProductHeaderDelegate extends SliverPersistentHeaderDelegate{
+  final String _title;
+
+  _HomePageProductHeaderDelegate(this._title);
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+   return Row(
+     children: [
+       Text(_title),
+       Text('See more')
+     ],
+   );
+  }
+
+  @override
+  double get maxExtent => 50;
+
+  @override
+  double get minExtent => 50;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }

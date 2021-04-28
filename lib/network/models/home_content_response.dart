@@ -22,8 +22,9 @@ class HomeContentResponse {
 class HomeContentData {
   List<Advertise> advertiseList;
   List<Product> newProductList;
+  List<Product> hotProductList;
 
-  HomeContentData(this.advertiseList, this.newProductList);
+  HomeContentData(this.advertiseList, this.newProductList, this.hotProductList);
 
   factory HomeContentData.fromJson(Map<String, dynamic> json) => _$HomeContentDataFromJson(json);
 

@@ -34,13 +34,24 @@ class ProductGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(_product.pic),
-        Text(_product.name),
-        Row(
-          children: [
-            Text(_product.price.toString()),
-            Text(_product.sale.toString())
-          ],
+        Container(
+          child: Image.network(
+            _product.pic,
+            height: 90,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(_product.name),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Text(_product.price.toString()),
+              Text(_product.sale.toString())
+            ],
+          ),
         )
       ],
     );
