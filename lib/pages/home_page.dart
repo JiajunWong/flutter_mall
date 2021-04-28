@@ -72,19 +72,28 @@ class _HomePageProductHeaderDelegate extends SliverPersistentHeaderDelegate{
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-   return Row(
-     children: [
-       Text(_title),
-       Text('See more')
-     ],
+   return Container(
+     padding: const EdgeInsets.symmetric(horizontal: 16),
+     child: Row(
+       children: [
+         Expanded(child: Text(
+           _title,
+           style: Theme.of(context).textTheme.headline6,
+         )),
+         TextButton(
+           onPressed: () {},
+           child: Text('See more'),
+         )
+       ],
+     ),
    );
   }
 
   @override
-  double get maxExtent => 50;
+  double get maxExtent => 56;
 
   @override
-  double get minExtent => 50;
+  double get minExtent => 56;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
